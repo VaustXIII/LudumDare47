@@ -213,6 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1239631068}
+  - component: {fileID: 1239631069}
   m_Layer: 0
   m_Name: Train
   m_TagString: Untagged
@@ -234,6 +235,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1239631069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239631067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210fa8ec487e62346b3e8b8b7dd98c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainCarPrefabs:
+  - {fileID: 3543016760999828395, guid: eeeb3cfba122e484086863b2677376dd, type: 3}
+  - {fileID: 3351223871055523272, guid: 34f99395b6156cf418a34f61fe75a9e9, type: 3}
 --- !u!1 &1718450707
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,8 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb00f647332ae0745b3bab974e0ecb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 0}
-  maxSpeed: 5
+  rb: {fileID: 0}
+  maxSpeed: 50
 --- !u!1 &2127010889
 GameObject:
   m_ObjectHideFlags: 0

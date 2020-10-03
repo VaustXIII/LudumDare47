@@ -52,6 +52,9 @@ public class TrainCarLooper : MonoBehaviour
 
         ConnectTrainCars(leftTrainCar, trainCars[0], true);
         trainCars.Insert(0, leftTrainCar);
+
+        leftTrainCar.PlayerEntered += OnPlayerReachedLeft;
+        rightTrainCar.PlayerEntered += OnPlayerReachedRight;
     }
 
     private void ConnectTrainCars(TrainCar left, TrainCar right, bool isMovingLeft = false)
@@ -70,5 +73,19 @@ public class TrainCarLooper : MonoBehaviour
 
         }
 
+    }
+
+    private void OnPlayerReachedLeft() {
+        var distanceToMove = trainCars[trainCars.Count - 2].transform.localPosition.x 
+            - trainCars[0].transform.localPosition.x;
+        
+        transform.Translate(-distanceToMove, 0f, 0f);
+    }
+
+    private void OnPlayerReachedRight() {
+        var distanceToMove = trainCars[trainCars.Count - 1].transform.localPosition.x 
+            - trainCars[1].transform.localPosition.x;
+        
+        transform.Translate(distanceToMove, 0f, 0f);
     }
 }

@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5596460134620551321}
   - component: {fileID: 3543016760999828395}
+  - component: {fileID: 3759610042053309049}
   m_Layer: 0
   m_Name: TrainCarBlue
   m_TagString: Untagged
@@ -203,6 +204,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftAnchor: {fileID: 5596460133767084527}
   rightAnchor: {fileID: 5596460133219371171}
+--- !u!65 &3759610042053309049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596460134620551320}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 10, z: 10}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &5596460134822413545
 GameObject:
   m_ObjectHideFlags: 0
