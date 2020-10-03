@@ -5,12 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private float maxSpeed = 5f;
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -23,6 +23,6 @@ public class PlayerControl : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         var velocity = new Vector3(horizontal, 0f, vertical).normalized * maxSpeed;
-        rigidbody.velocity = velocity;
+        rb.velocity = velocity;
     }
 }
