@@ -6,7 +6,7 @@ public class QuestForPassengerTrainCar : MonoBehaviour
 {
     [SerializeField] private ChoiceCanvasController choiceCanvasController;
     private bool[] choicesMade = new bool[3]; // РАЗМЕР - КОЛИЧЕСТВО ВЫБОРОВ В ПРЕВОМ ВАГОНЕ!!!
-    private bool hasWarpedAfterChoice = false;
+    private bool hasWarpedAfterChoice = true;
 
     // Start is called before the first frame update
     void Start()
@@ -15,17 +15,22 @@ public class QuestForPassengerTrainCar : MonoBehaviour
         choiceCanvasController.PlayerHasChosen += OnPlayerHasChosen;
     }
 
-    private void OnPlayerWarped() {
+    private void OnPlayerWarped()
+    {
         hasWarpedAfterChoice = true;
     }
 
-    private void OnPlayerHasChosen(int choice) {
+    private void OnPlayerHasChosen(int choice)
+    {
+        if (!hasWarpedAfterChoice) { return; }
+
         choicesMade[choice] = true;
         hasWarpedAfterChoice = false;
 
-        foreach (var isChoiceMade in choicesMade) {
+        foreach (var isChoiceMade in choicesMade)
+        {
             if (!isChoiceMade) return;
         }
-        QuestsManager.Instance.CompleteQuest(TrainCarType.Cargo);
+        QuestsManager.Instance.InvokeQuestCompleted(TrainCarType.Cargo);
     }
 }

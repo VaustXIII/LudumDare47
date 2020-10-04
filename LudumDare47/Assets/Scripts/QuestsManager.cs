@@ -7,7 +7,7 @@ public class QuestsManager : MonoBehaviour
 {
     public static QuestsManager Instance { get; private set; }
 
-    public event Action<TrainCarType> QuestComplete;
+    public event Action<TrainCarType> QuestCompleted;
     public event Action PlayerWarpedAround;
 
     // Start is called before the first frame update
@@ -19,8 +19,13 @@ public class QuestsManager : MonoBehaviour
         Instance = this;
     }
 
-    public void CompleteQuest(TrainCarType unlockedTrainCar) {
-        QuestComplete?.Invoke(unlockedTrainCar);
+    public void InvokeQuestCompleted(TrainCarType unlockedTrainCar) {
+        QuestCompleted?.Invoke(unlockedTrainCar);
         Debug.Log($"Quest completed, {unlockedTrainCar} unlocked");
+    }
+
+    public void InvokePlayerWarped() {
+        PlayerWarpedAround?.Invoke();
+        Debug.Log($"Player warped");
     }
 }

@@ -26,7 +26,7 @@ public class TrainCarLooper : MonoBehaviour
     }
 
     private void Start() {
-        QuestsManager.Instance.QuestComplete += AddTrainCarToTrain;
+        QuestsManager.Instance.QuestCompleted += AddTrainCarToTrain;
     }
 
     public void AddTrainCarToTrain(int carType) {
@@ -100,6 +100,8 @@ public class TrainCarLooper : MonoBehaviour
             - trainCars[0].transform.localPosition.x;
 
         transform.Translate(-distanceToMove, 0f, 0f);
+        QuestsManager.Instance.InvokePlayerWarped();
+        
     }
 
     private void OnPlayerReachedRight()
@@ -108,5 +110,7 @@ public class TrainCarLooper : MonoBehaviour
             - trainCars[1].transform.localPosition.x;
 
         transform.Translate(distanceToMove, 0f, 0f);
+        QuestsManager.Instance.InvokePlayerWarped();
+
     }
 }
