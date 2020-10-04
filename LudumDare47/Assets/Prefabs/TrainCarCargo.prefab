@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38c9483acf8ebd8478d789873ce4578c, type: 2}
+  - {fileID: 2100000, guid: 1a74a05cb71299842ab32c24f7376542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3351223871055523272}
   - component: {fileID: -6819853691333702711}
   m_Layer: 0
-  m_Name: TrainCarGreen
+  m_Name: TrainCarRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 10, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &5777928281352332376
 GameObject:
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38c9483acf8ebd8478d789873ce4578c, type: 2}
+  - {fileID: 2100000, guid: 1a74a05cb71299842ab32c24f7376542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

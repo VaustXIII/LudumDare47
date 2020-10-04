@@ -31,6 +31,22 @@ public class TrainCarLooper : MonoBehaviour
 
     }
 
+    public void AddTrainCarToTrain(int carType) {
+        int indexOfLast = trainCars.Count - 1;
+        var oldCar = trainCars[indexOfLast];
+        trainCars.Remove(oldCar);
+        oldCar.transform.Translate(-oldCar.transform.localPosition.x, 0f, 0f);
+        var newCar = Instantiate<TrainCar>(trainCarPrefabs[carType], transform);
+        var plainCar = Instantiate<TrainCar>(trainCarPrefabs[(int)TrainCarType.Plain], transform);
+
+        trainCars.Add(newCar);
+        trainCars.Add(plainCar);
+        trainCars.Add(oldCar);
+        ConnectTrainCars(trainCars[indexOfLast-1], newCar);
+        ConnectTrainCars(newCar, plainCar);
+        ConnectTrainCars(plainCar, oldCar);
+    }
+
     private void InitializeTrainCars()
     {
         trainCars = new List<TrainCar>(4);
@@ -38,9 +54,9 @@ public class TrainCarLooper : MonoBehaviour
         TrainCarType[] toInstatiate = { TrainCarType.Plain, TrainCarType.Passenger, TrainCarType.Plain, TrainCarType.Passenger };
 
         TrainCar previous = null;
-        foreach (var type in toInstatiate)
+        foreach (var carType in toInstatiate)
         {
-            var trainCar = Instantiate<TrainCar>(trainCarPrefabs[(int)type], transform);
+            var trainCar = Instantiate<TrainCar>(trainCarPrefabs[(int)carType], transform);
             if (previous != null)
             {
                 ConnectTrainCars(previous, trainCar);
