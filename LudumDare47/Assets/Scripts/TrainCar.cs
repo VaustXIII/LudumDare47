@@ -13,16 +13,14 @@ public class TrainCar : MonoBehaviour
     public Transform RightAnchor => rightAnchor;
     [SerializeField] private Transform rightAnchor;
 
-    private BoxCollider trainCarCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        trainCarCollider = GetComponent<BoxCollider>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log($"Collided with {other.tag}");
+        Debug.Log($"{gameObject.name} trigger entered by {other.name}");
         
         if (other.GetComponent<PlayerControl>() != null) {
             PlayerEntered?.Invoke();
