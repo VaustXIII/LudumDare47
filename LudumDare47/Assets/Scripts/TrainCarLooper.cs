@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum TrainCarType
+{
+    Plain = 0,
+    Passenger,
+    Cargo,
+
+}
+
 public class TrainCarLooper : MonoBehaviour
 {
     [SerializeField] private List<TrainCar> trainCarPrefabs;
@@ -25,15 +33,14 @@ public class TrainCarLooper : MonoBehaviour
 
     private void InitializeTrainCars()
     {
-        int trainCarsCount = trainCarPrefabs.Count;
-        Assert.IsTrue(trainCarsCount > 0, "Must have at least one train car");
+        trainCars = new List<TrainCar>(4);
 
-        trainCars = new List<TrainCar>(trainCarsCount + 2); // All prefabs + 2 on left and right for looping
+        TrainCarType[] toInstatiate = { TrainCarType.Plain, TrainCarType.Passenger, TrainCarType.Plain, TrainCarType.Passenger };
 
         TrainCar previous = null;
-        foreach (var trainCarPrefab in trainCarPrefabs)
+        foreach (var type in toInstatiate)
         {
-            var trainCar = Instantiate<TrainCar>(trainCarPrefab, transform);
+            var trainCar = Instantiate<TrainCar>(trainCarPrefabs[(int)type], transform);
             if (previous != null)
             {
                 ConnectTrainCars(previous, trainCar);
@@ -42,17 +49,11 @@ public class TrainCarLooper : MonoBehaviour
             previous = trainCar;
         }
 
-        var left = trainCarPrefabs[trainCarsCount - 1];
-        var right = trainCarPrefabs[0];
-        leftTrainCar = Instantiate<TrainCar>(left, transform);
-        rightTrainCar = Instantiate<TrainCar>(right, transform);
+        transform.Translate(
+            trainCars[0].transform.localPosition.x - trainCars[1].transform.localPosition.x, 0f, 0f);
 
-        ConnectTrainCars(trainCars[trainCarsCount - 1], rightTrainCar);
-        trainCars.Add(rightTrainCar);
-
-        ConnectTrainCars(leftTrainCar, trainCars[0], true);
-        trainCars.Insert(0, leftTrainCar);
-
+        var leftTrainCar = trainCars[0];
+        var rightTrainCar = trainCars[trainCars.Count - 1];
         leftTrainCar.PlayerEntered += OnPlayerReachedLeft;
         rightTrainCar.PlayerEntered += OnPlayerReachedRight;
     }
@@ -75,17 +76,19 @@ public class TrainCarLooper : MonoBehaviour
 
     }
 
-    private void OnPlayerReachedLeft() {
-        var distanceToMove = trainCars[trainCars.Count - 2].transform.localPosition.x 
+    private void OnPlayerReachedLeft()
+    {
+        var distanceToMove = trainCars[trainCars.Count - 2].transform.localPosition.x
             - trainCars[0].transform.localPosition.x;
-        
+
         transform.Translate(-distanceToMove, 0f, 0f);
     }
 
-    private void OnPlayerReachedRight() {
-        var distanceToMove = trainCars[trainCars.Count - 1].transform.localPosition.x 
+    private void OnPlayerReachedRight()
+    {
+        var distanceToMove = trainCars[trainCars.Count - 1].transform.localPosition.x
             - trainCars[1].transform.localPosition.x;
-        
+
         transform.Translate(distanceToMove, 0f, 0f);
     }
 }
