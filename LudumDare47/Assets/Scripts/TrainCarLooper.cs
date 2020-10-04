@@ -20,23 +20,25 @@ public class TrainCarLooper : MonoBehaviour
     private TrainCar rightTrainCar;
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         InitializeTrainCars();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    private void Start() {
+        QuestsManager.Instance.QuestComplete += AddTrainCarToTrain;
     }
 
     public void AddTrainCarToTrain(int carType) {
+        AddTrainCarToTrain((TrainCarType) carType);
+    }
+
+    public void AddTrainCarToTrain(TrainCarType carType) {
         int indexOfLast = trainCars.Count - 1;
         var oldCar = trainCars[indexOfLast];
         trainCars.Remove(oldCar);
         oldCar.transform.Translate(-oldCar.transform.localPosition.x, 0f, 0f);
-        var newCar = Instantiate<TrainCar>(trainCarPrefabs[carType], transform);
+        var newCar = Instantiate<TrainCar>(trainCarPrefabs[(int)carType], transform);
         var plainCar = Instantiate<TrainCar>(trainCarPrefabs[(int)TrainCarType.Plain], transform);
 
         trainCars.Add(newCar);
