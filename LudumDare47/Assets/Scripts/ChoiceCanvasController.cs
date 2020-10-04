@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChoiceCanvasController : MonoBehaviour
 {
+    public event Action<int> PlayerHasChosen;
+
     [SerializeField] private Interactible bindedInteractible;
     [SerializeField] private Canvas choiceCanvas;
 
@@ -16,6 +19,7 @@ public class ChoiceCanvasController : MonoBehaviour
     
     public void Choose(int choice) {
         Debug.Log($"Chose {choice}");
+        PlayerHasChosen?.Invoke(choice);
         choiceCanvas.gameObject.SetActive(false);
     }
 

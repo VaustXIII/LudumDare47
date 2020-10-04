@@ -18,4 +18,9 @@ public class QuestsManager : MonoBehaviour
         }
         Instance = this;
     }
+
+    public void CompleteQuest(TrainCarType unlockedTrainCar) {
+        QuestComplete?.Invoke(unlockedTrainCar);
+        Debug.Log($"Quest completed, {unlockedTrainCar} unlocked");
+    }
 }
