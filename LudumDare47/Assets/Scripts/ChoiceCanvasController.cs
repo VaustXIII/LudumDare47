@@ -9,18 +9,21 @@ public class ChoiceCanvasController : MonoBehaviour
 
     [SerializeField] private Interactible bindedInteractible;
     [SerializeField] private Canvas choiceCanvas;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         bindedInteractible.PlayerInteracted += OnInteracted;
         bindedInteractible.PlayerLeft += OnPlayerLeft;
+        source = GetComponent<AudioSource>();
     }
     
     public void Choose(int choice) {
         Debug.Log($"Chose {choice}");
         PlayerHasChosen?.Invoke(choice);
         choiceCanvas.gameObject.SetActive(false);
+        source.Play();
     }
 
     private void OnInteracted() {

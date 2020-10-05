@@ -8,13 +8,20 @@ public class Interactible : MonoBehaviour
 {
     public event Action PlayerInteracted;
     public event Action PlayerLeft;
+    private AudioSource soundSource;
 
     [SerializeField] private GameObject interactionAvailableHint;
     [SerializeField] private SphereCollider interactionTrigger;
 
+    void Start()
+    {
+        soundSource = GetComponent<AudioSource>();
+    }
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space) && interactionAvailableHint.activeSelf) {
             PlayerInteracted?.Invoke();
+            soundSource.Play();
         }
     }
 
