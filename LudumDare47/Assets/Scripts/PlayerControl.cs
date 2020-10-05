@@ -24,5 +24,10 @@ public class PlayerControl : MonoBehaviour
 
         var velocity = new Vector3(horizontal, 0f, vertical).normalized * maxSpeed;
         rb.velocity = velocity;
+
+        if (horizontal == 0f && vertical == 0f) {
+            return;
+        }
+        transform.LookAt(-10*velocity);
     }
 }
