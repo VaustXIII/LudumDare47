@@ -3399,6 +3399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1718450711}
+  onlyX: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -11140,6 +11141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 519420032}
+  onlyX: 1
 --- !u!4 &1909442066
 Transform:
   m_ObjectHideFlags: 0
@@ -11148,7 +11150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909442064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 327.31595, y: -139.62164, z: 26.047424}
+  m_LocalPosition: {x: 327.31595, y: -130, z: 28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 45030778}
@@ -13016,7 +13018,7 @@ PrefabInstance:
     - target: {fileID: 3274186724958303850, guid: ea2b188cd233c4825aa2a8d4d3ec2015,
         type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea2b188cd233c4825aa2a8d4d3ec2015, type: 3}
