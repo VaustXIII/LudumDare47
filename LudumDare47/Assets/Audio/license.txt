@@ -1,0 +1,6 @@
+In game BGM: Music in the background from https://www.fesliyanstudios.com
+
+Win screen BGM:
+Fig Leaf Rag by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/3750-fig-leaf-rag
+License: http://creativecommons.org/licenses/by/4.0/
