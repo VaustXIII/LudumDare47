@@ -22,6 +22,8 @@ public class QuestForPassengerTrainCar : MonoBehaviour
 
     private void OnPlayerHasChosen(int choice)
     {
+        PlayerControl.Instance.EquipSuitCase((SuitCaseType) choice);
+        
         if (!hasWarpedAfterChoice) { return; }
 
         choicesMade[choice] = true;
