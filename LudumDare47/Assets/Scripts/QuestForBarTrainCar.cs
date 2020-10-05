@@ -18,7 +18,7 @@ public class QuestForBarTrainCar : MonoBehaviour
     {
         PlayerControl.Instance.EquipDrink((DrinkType)choice);
 
-        if ((DrinkType)choice == DrinkType.Drink3) {
+        if ((DrinkType)choice == DrinkType.Drink1) {
             QuestsManager.Instance.InvokeQuestCompleted(TrainCarType.Head);
         }
 

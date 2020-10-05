@@ -114,7 +114,6 @@ public class TrainCarLooper : MonoBehaviour
         Destroy(beforeLast.gameObject);
 
         count = trainCars.Count;
-        trainCars[count-1].transform.Translate(-trainCars[count-1].transform.position.x, 0f, 0f);
         ConnectTrainCars(trainCars[count - 2], trainCars[count - 1]);
     }
 
@@ -147,6 +146,7 @@ public class TrainCarLooper : MonoBehaviour
 
     private void ConnectTrainCars(TrainCar left, TrainCar right, bool isMovingLeft = false)
     {
+        
         float distanceBetweenCurrentAndPrevious = left.RightAnchor.localPosition.x
                     + (-right.LeftAnchor.localPosition.x);
         if (isMovingLeft)
@@ -156,6 +156,7 @@ public class TrainCarLooper : MonoBehaviour
         }
         else
         {
+            right.transform.Translate(-right.transform.localPosition.x, 0f, 0f);
             right.transform.Translate(
                 left.transform.localPosition.x + distanceBetweenCurrentAndPrevious, 0f, 0f);
 
