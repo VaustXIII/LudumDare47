@@ -12,24 +12,27 @@ public class Interactible : MonoBehaviour
     [SerializeField] private GameObject interactionAvailableHint;
     [SerializeField] private SphereCollider interactionTrigger;
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && interactionAvailableHint.activeSelf) {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && interactionAvailableHint.activeSelf)
+        {
             PlayerInteracted?.Invoke();
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log($"{gameObject.name} trigger entered by {other.name}");
-        
-        if (other.GetComponent<PlayerControl>() != null) {
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.GetComponent<PlayerControl>() != null)
+        {
             interactionAvailableHint.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        Debug.Log($"{gameObject.name} trigger exited by {other.name}");
-        
-        if (other.GetComponent<PlayerControl>() != null) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerControl>() != null)
+        {
             interactionAvailableHint.SetActive(false);
             PlayerLeft?.Invoke();
         }
