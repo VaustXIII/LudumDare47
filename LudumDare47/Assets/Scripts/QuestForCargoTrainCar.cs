@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestForPassengerTrainCar : MonoBehaviour
+public class QuestForCargoTrainCar : MonoBehaviour
 {
     [SerializeField] private ChoiceCanvasController choiceCanvasController;
     private bool[] choicesMade = new bool[3]; // РАЗМЕР - КОЛИЧЕСТВО ВЫБОРОВ В ПРЕВОМ ВАГОНЕ!!!
@@ -23,7 +23,7 @@ public class QuestForPassengerTrainCar : MonoBehaviour
     private void OnPlayerHasChosen(int choice)
     {
         PlayerControl.Instance.EquipSuitCase((SuitCaseType) choice);
-
+        
         if (!hasWarpedAfterChoice) { return; }
 
         choicesMade[choice] = true;

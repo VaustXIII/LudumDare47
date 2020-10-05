@@ -8,6 +8,7 @@ public enum TrainCarType
     Plain = 0,
     Passenger,
     Cargo,
+    Restaraunt,
 
 }
 

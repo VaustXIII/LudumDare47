@@ -12,19 +12,37 @@ public class QuestsManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Awake()
-    {   
-        if (Instance != null) {
+    {
+        if (Instance != null)
+        {
             Debug.LogError($"Duplicate {name}");
         }
         Instance = this;
     }
 
-    public void InvokeQuestCompleted(TrainCarType unlockedTrainCar) {
+    public void DebugQuestCompleted(int quest)
+    {
+        switch (quest)
+        {
+            case 0:
+                QuestsManager.Instance.InvokeQuestCompleted(TrainCarType.Cargo);
+                break;
+            case 1:
+                QuestsManager.Instance.InvokeQuestCompleted(TrainCarType.Restaraunt);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void InvokeQuestCompleted(TrainCarType unlockedTrainCar)
+    {
         QuestCompleted?.Invoke(unlockedTrainCar);
         Debug.Log($"Quest completed, {unlockedTrainCar} unlocked");
     }
 
-    public void InvokePlayerWarped() {
+    public void InvokePlayerWarped()
+    {
         PlayerWarpedAround?.Invoke();
         Debug.Log($"Player warped");
     }
