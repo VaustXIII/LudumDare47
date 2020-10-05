@@ -19,10 +19,11 @@ public class TrainCar : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log($"{gameObject.name} trigger entered by {other.name}");
-        
-        if (other.GetComponent<PlayerControl>() != null) {
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.GetComponent<PlayerControl>() != null)
+        {
             PlayerEntered?.Invoke();
         }
     }

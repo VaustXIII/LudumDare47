@@ -25,18 +25,19 @@ public class Interactible : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log($"{gameObject.name} trigger entered by {other.name}");
-        
-        if (other.GetComponent<PlayerControl>() != null) {
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.GetComponent<PlayerControl>() != null)
+        {
             interactionAvailableHint.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        Debug.Log($"{gameObject.name} trigger exited by {other.name}");
-        
-        if (other.GetComponent<PlayerControl>() != null) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<PlayerControl>() != null)
+        {
             interactionAvailableHint.SetActive(false);
             PlayerLeft?.Invoke();
         }

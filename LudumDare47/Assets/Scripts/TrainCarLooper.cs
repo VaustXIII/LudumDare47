@@ -102,6 +102,7 @@ public class TrainCarLooper : MonoBehaviour
         Destroy(beforeLast.gameObject);
 
         count = trainCars.Count;
+        trainCars[count-1].transform.Translate(-trainCars[count-1].transform.position.x, 0f, 0f);
         ConnectTrainCars(trainCars[count - 2], trainCars[count - 1]);
     }
 
