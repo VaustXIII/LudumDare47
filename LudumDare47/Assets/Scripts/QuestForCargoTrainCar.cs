@@ -22,7 +22,7 @@ public class QuestForCargoTrainCar : MonoBehaviour
 
     private void OnPlayerHasChosen(int choice)
     {
-        PlayerControl.Instance.EquipSuitCase((SuitCaseType) choice);
+        PlayerControl.Instance.EquipClothes((ClothesType) choice);
         
         if (!hasWarpedAfterChoice) { return; }
 
