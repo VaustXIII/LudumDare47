@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestForCargoTrainCar : MonoBehaviour
+public class QuestForBarTrainCar : MonoBehaviour
 {
     [SerializeField] private ChoiceCanvasController choiceCanvasController;
+    [SerializeField] private Interactible barDudeDialogueInteractible;
 
     bool isNextStarted;
 
     // Start is called before the first frame update
     void Start()
     {
+        barDudeDialogueInteractible.PlayerInteracted += () => QuestsManager.Instance.InvokeQuestStarted(TrainCarType.Restaraunt);
         choiceCanvasController.PlayerHasChosen += OnPlayerHasChosen;
         QuestsManager.Instance.QuestStarted += OnQuestStarted;
     }
@@ -25,17 +27,9 @@ public class QuestForCargoTrainCar : MonoBehaviour
 
     private void OnPlayerHasChosen(int choice)
     {
-        PlayerControl.Instance.EquipClothes((ClothesType)choice);
+        PlayerControl.Instance.EquipDrink((DrinkType)choice);
 
         if (isNextStarted) { return; }
 
-        if ((ClothesType)choice == ClothesType.Barman)
-        {
-            QuestsManager.Instance.InvokeQuestCompleted(TrainCarType.Restaraunt);
-        }
-        else
-        {
-            QuestsManager.Instance.InvokeQuestUnCompleted(TrainCarType.Restaraunt);
-        }
     }
 }

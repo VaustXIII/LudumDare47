@@ -9,6 +9,7 @@ public enum TrainCarType
     Passenger,
     Cargo,
     Restaraunt,
+    Head
 
 }
 
@@ -20,21 +21,34 @@ public class TrainCarLooper : MonoBehaviour
     private TrainCar leftTrainCar;
     private TrainCar rightTrainCar;
 
+
+    private bool isBarSpawned;
+    private bool isHeadSpawned;
+
     // Start is called before the first frame update
     private void Awake()
     {
         InitializeTrainCars();
     }
 
-    private void Start() {
+    private void Start()
+    {
         QuestsManager.Instance.QuestCompleted += AddTrainCarToTrain;
+        QuestsManager.Instance.QuestUnCompleted += OnQuestUncompleted;
     }
 
-    public void AddTrainCarToTrain(int carType) {
-        AddTrainCarToTrain((TrainCarType) carType);
+    public void AddTrainCarToTrain(int carType)
+    {
+        AddTrainCarToTrain((TrainCarType)carType);
     }
 
-    public void AddTrainCarToTrain(TrainCarType carType) {
+    public void AddTrainCarToTrain(TrainCarType carType)
+    {
+        if (carType == TrainCarType.Restaraunt && isBarSpawned) { return; }
+        if (carType == TrainCarType.Head && isHeadSpawned) { return; }
+        isBarSpawned = carType == TrainCarType.Restaraunt;
+        isHeadSpawned = carType == TrainCarType.Head;
+
         int indexOfLast = trainCars.Count - 1;
         var oldCar = trainCars[indexOfLast];
         trainCars.Remove(oldCar);
@@ -45,9 +59,50 @@ public class TrainCarLooper : MonoBehaviour
         trainCars.Add(newCar);
         trainCars.Add(plainCar);
         trainCars.Add(oldCar);
-        ConnectTrainCars(trainCars[indexOfLast-1], newCar);
+        ConnectTrainCars(trainCars[indexOfLast - 1], newCar);
         ConnectTrainCars(newCar, plainCar);
         ConnectTrainCars(plainCar, oldCar);
+    }
+
+    private void OnQuestUncompleted(TrainCarType carType)
+    {
+        Debug.Log($"Handling uncomleted for {carType}, isBarSpawned: {isBarSpawned}, isHeadSpawned: {isHeadSpawned}");
+        switch (carType)
+        {
+            case TrainCarType.Restaraunt:
+                if (isBarSpawned)
+                {
+                    isBarSpawned = false;
+                    RemoveOneTrainCar();
+                }
+                break;
+            case TrainCarType.Head:
+                if (isHeadSpawned)
+                {
+                    isHeadSpawned = false;
+                    RemoveOneTrainCar();
+                }
+                break;
+            default:
+                Debug.Log($"Don't care about uncompleted {carType}");
+                break;
+        }
+    }
+
+    private void RemoveOneTrainCar()
+    {
+        var count = trainCars.Count;
+
+        var last = trainCars[count - 2];
+        var beforeLast = trainCars[count - 3];
+
+        trainCars.Remove(last);
+        trainCars.Remove(beforeLast);
+        Destroy(last.gameObject);
+        Destroy(beforeLast.gameObject);
+
+        count = trainCars.Count;
+        ConnectTrainCars(trainCars[count - 2], trainCars[count - 1]);
     }
 
     private void InitializeTrainCars()
@@ -102,7 +157,7 @@ public class TrainCarLooper : MonoBehaviour
 
         transform.Translate(-distanceToMove, 0f, 0f);
         QuestsManager.Instance.InvokePlayerWarped();
-        
+
     }
 
     private void OnPlayerReachedRight()
