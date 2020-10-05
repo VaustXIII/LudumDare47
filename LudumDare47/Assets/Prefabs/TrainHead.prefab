@@ -1098,6 +1098,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a7bc0fbe47ec4be43b8f7d8cd3be1dd8,
         type: 2}
+    - target: {fileID: 8088598421841912011, guid: ec9e879dc27811e4ebe670e5f1ad52a4,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088598421841912011, guid: ec9e879dc27811e4ebe670e5f1ad52a4,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8088598422117538268, guid: ec9e879dc27811e4ebe670e5f1ad52a4,
         type: 3}
       propertyPath: m_LocalPosition.y
