@@ -62,6 +62,18 @@ public class TrainCarLooper : MonoBehaviour
         ConnectTrainCars(trainCars[indexOfLast - 1], newCar);
         ConnectTrainCars(newCar, plainCar);
         ConnectTrainCars(plainCar, oldCar);
+
+        if (carType == TrainCarType.Head) {
+            var first = trainCars[0];
+            var last = trainCars[trainCars.Count - 1];
+
+            trainCars.Remove(first);
+            trainCars.Remove(last);
+            first.PlayerEntered -= OnPlayerReachedLeft;
+            last.PlayerEntered -= OnPlayerReachedRight;
+            Destroy(first.gameObject);
+            Destroy(last.gameObject);
+        }
     }
 
     private void OnQuestUncompleted(TrainCarType carType)
